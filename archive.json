@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-12-19T00:58:55.531325+00:00",
+  "timestamp": "2022-01-02T00:58:46.505729+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -65,12 +65,12 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "architecture",
-        "help wanted"
+        "help wanted",
+        "architecture"
       ],
       "body": "Need to provide recommendations for section {{recs-srvr}} in the pp-architecture draft. It seems to me that it is easy for individual clients to identify and react to servers that seem to be acting maliciously. For example, the client can monitor and reject key material from servers where the configuration was last modified very recently and how often the rotations seem to be occurring. However, I'm not exactly sure what the reporting mechanism should be to alert other clients to this behavior.",
       "createdAt": "2020-03-03T14:06:06Z",
-      "updatedAt": "2020-03-23T08:03:39Z",
+      "updatedAt": "2021-12-30T14:57:07Z",
       "closedAt": null,
       "comments": [
         {
@@ -79,6 +79,13 @@
           "body": "Mmm.. this is quite interesting. \r\n\r\nSomething that can be imposed to the server is to have a window of time in which rotations can't happen. I was thinking on something like this:\r\n\r\n* When a server updates their configuration (every 1 to 12 weeks as recommended), it does not immediately use this new configuration; but rather continues using the old one for shorter time frame (less than the 1 to 12 weeks, referred now as `t`), and makes clients aware of a new configuration that is coming. During `t`, the server cannot generate a new configuration. When `t` passes, the server starts using the new configuration (which clients can be sort of aware already). \r\n\r\nThis will make hard for a server to update in quick intervals, and that new configurations are not immediately used.\r\n\r\nI'm not sure about how much this will work, and I'll have to think more about it ;)\r\n\r\nSomething, that I don't know if is mentioned in the drafts is defining what happens is a server is rendered unavailable, in some sort of DoS. Maybe nothing can be done in that case...",
           "createdAt": "2020-03-23T08:03:39Z",
           "updatedAt": "2020-03-23T08:03:39Z"
+        },
+        {
+          "author": "phyo734",
+          "authorAssociation": "NONE",
+          "body": "0x170DBdd337bA421fED5498279a61db29B66aB37d",
+          "createdAt": "2021-12-30T14:57:07Z",
+          "updatedAt": "2021-12-30T14:57:07Z"
         }
       ]
     },
@@ -1210,6 +1217,22 @@
           "updatedAt": "2021-12-17T13:20:39Z"
         }
       ]
+    },
+    {
+      "number": 89,
+      "id": "I_kwDODeTEy85BCbEM",
+      "title": "0x170DBdd337bA421fED5498279a61db29B66aB37d",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/89",
+      "state": "CLOSED",
+      "author": "phyo734",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "0x170DBdd337bA421fED5498279a61db29B66aB37d\r\n\r\n_Originally posted by @phyo734 in https://github.com/ietf-wg-privacypass/base-drafts/issues/2#issuecomment-1003064394_",
+      "createdAt": "2021-12-30T14:58:25Z",
+      "updatedAt": "2021-12-30T18:31:51Z",
+      "closedAt": "2021-12-30T18:31:51Z",
+      "comments": []
     }
   ],
   "pulls": [
