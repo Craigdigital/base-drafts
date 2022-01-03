@@ -5,14 +5,14 @@
 Network Working Group                                            S. Celi
 Internet-Draft                                                Cloudflare
 Intended status: Informational                               A. Davidson
-Expires: 21 June 2022                                     Brave Software
+Expires: 7 July 2022                                      Brave Software
                                                         A. Faz-Hernandez
                                                               Cloudflare
                                                                S. Valdez
                                                               Google LLC
                                                                C.A. Wood
                                                               Cloudflare
-                                                        18 December 2021
+                                                          3 January 2022
 
 
                      Privacy Pass Issuance Protocol
@@ -41,11 +41,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 June 2022.
+   This Internet-Draft will expire on 7 July 2022.
 
 Copyright Notice
 
-   Copyright (c) 2021 IETF Trust and the persons identified as the
+   Copyright (c) 2022 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -330,7 +330,7 @@ Table of Contents
    nonce = random(32)
    context = SHA256(challenge)
    token_input = concat(0x0002, nonce, context, key_id)
-   blinded_msg, blind_inv = rsabssa_blind(pkI, message)
+   blinded_msg, blind_inv = rsabssa_blind(pkI, token_input)
 
    The Client then creates a TokenRequest structured as follows:
 
