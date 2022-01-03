@@ -313,7 +313,7 @@ Table of Contents
       name that can be used to construct HTTP requests to the Issuer.
 
    *  Issuer Public Key pkI, with a key identifier key_id computed as
-      described in Section 3.4.
+      described in Section 4.4.
 
    *  Challenge value challenge, an opaque byte string provided by the
       corresponding redemption protocol [http-auth-doc].
