@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-01-02T00:58:46.505729+00:00",
+  "timestamp": "2022-01-04T00:56:49.887966+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -5362,13 +5362,13 @@
       "labels": [],
       "body": "Built on the [latest architecture change](#86) and [HTTP-auth mechanism](https://github.com/tfpauly/privacy-proxy/blob/main/draft-pauly-privacypass-auth-scheme.md), and building on #83 as the opinionated approach. This includes both the POPRF variant and RSA variants.",
       "createdAt": "2021-12-13T23:09:55Z",
-      "updatedAt": "2021-12-18T16:09:57Z",
+      "updatedAt": "2022-01-03T23:18:14Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/pp-issuance",
-      "headRefOid": "375a304a755e3695426054c5a07064d72feb95e4",
+      "headRefOid": "4bfd0b6b7ca8f12cef2b1ec03ce4d718af7f2019",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -5723,6 +5723,86 @@
               "body": "```suggestion\r\n- The TokenRequest contains a supported token_type.\r\n- The TokenRequest.issuer_key_id corresponds to a key ID of a Public Key owned by the issuer.\r\n- The TokenRequest.blinded_msg is of the correct size.\r\n```",
               "createdAt": "2021-12-15T23:32:06Z",
               "updatedAt": "2021-12-15T23:32:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84yPxou",
+          "commit": {
+            "abbreviatedOid": "375a304"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-01-03T19:46:45Z",
+          "updatedAt": "2022-01-03T19:46:46Z",
+          "comments": [
+            {
+              "originalPosition": 664,
+              "body": "This reference is wrong, since it's pointing to the VOPRF text.",
+              "createdAt": "2022-01-03T19:46:46Z",
+              "updatedAt": "2022-01-03T19:46:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84yQLEm",
+          "commit": {
+            "abbreviatedOid": "375a304"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-01-03T23:13:40Z",
+          "updatedAt": "2022-01-03T23:13:40Z",
+          "comments": [
+            {
+              "originalPosition": 695,
+              "body": "@chris-wood should this be the following?\r\n\r\n```suggestion\r\nblinded_msg, blind_inv = rsabssa_blind(pkI, token_input)\r\n```",
+              "createdAt": "2022-01-03T23:13:40Z",
+              "updatedAt": "2022-01-03T23:13:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84yQLTp",
+          "commit": {
+            "abbreviatedOid": "375a304"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-01-03T23:16:26Z",
+          "updatedAt": "2022-01-03T23:16:27Z",
+          "comments": [
+            {
+              "originalPosition": 664,
+              "body": "```suggestion\r\n  described in {{public-issuer-configuration}}.\r\n```",
+              "createdAt": "2022-01-03T23:16:26Z",
+              "updatedAt": "2022-01-03T23:16:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84yQLdh",
+          "commit": {
+            "abbreviatedOid": "4bfd0b6"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-01-03T23:18:13Z",
+          "updatedAt": "2022-01-03T23:18:14Z",
+          "comments": [
+            {
+              "originalPosition": 664,
+              "body": "Fixed \ud83d\udc4d ",
+              "createdAt": "2022-01-03T23:18:13Z",
+              "updatedAt": "2022-01-03T23:18:14Z"
             }
           ]
         }
