@@ -1357,7 +1357,7 @@ content-length = 50
 <ul class="normal">
 <li class="normal" id="section-3.1-13.1">The TokenRequest contains a supported token_type<a href="#section-3.1-13.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-13.2">The TokenRequest.issuer_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-3.1-13.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-13.2">The TokenRequest.token_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-3.1-13.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-13.3">The TokenRequest.blinded_msg is of the correct size<a href="#section-3.1-13.3" class="pilcrow">¶</a>
 </li>
@@ -1511,7 +1511,7 @@ blinded_msg, blind_inv = rsabssa_blind(pkI, token_input)
 <pre>
 struct {
    uint16_t token_type = 0x0002
-   uint8_t issuer_key_id;
+   uint8_t token_key_id;
    uint8_t blinded_msg[Nk];
 } TokenRequest;
 </pre><a href="#section-4.1-4" class="pilcrow">¶</a>
@@ -1547,7 +1547,7 @@ content-length = 514
 <ul class="normal">
 <li class="normal" id="section-4.1-10.1">The TokenRequest contains a supported token_type.<a href="#section-4.1-10.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-10.2">The TokenRequest.issuer_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-4.1-10.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-10.2">The TokenRequest.token_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-4.1-10.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.1-10.3">The TokenRequest.blinded_msg is of the correct size.<a href="#section-4.1-10.3" class="pilcrow">¶</a>
 </li>

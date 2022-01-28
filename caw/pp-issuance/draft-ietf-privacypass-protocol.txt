@@ -218,7 +218,7 @@ Table of Contents
 
    *  The TokenRequest contains a supported token_type
 
-   *  The TokenRequest.issuer_key_id corresponds to a key ID of a Public
+   *  The TokenRequest.token_key_id corresponds to a key ID of a Public
       Key owned by the issuer.
 
    *  The TokenRequest.blinded_msg is of the correct size
@@ -336,7 +336,7 @@ Table of Contents
 
    struct {
       uint16_t token_type = 0x0002
-      uint8_t issuer_key_id;
+      uint8_t token_key_id;
       uint8_t blinded_msg[Nk];
    } TokenRequest;
 
@@ -370,7 +370,7 @@ Table of Contents
 
    *  The TokenRequest contains a supported token_type.
 
-   *  The TokenRequest.issuer_key_id corresponds to a key ID of a Public
+   *  The TokenRequest.token_key_id corresponds to a key ID of a Public
       Key owned by the issuer.
 
    *  The TokenRequest.blinded_msg is of the correct size.
