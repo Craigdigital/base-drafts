@@ -1520,7 +1520,7 @@ struct {
 <ul class="normal">
 <li class="normal" id="section-4.1-6.1">"token_type" is a 2-octet integer, which matches the type in the challenge.<a href="#section-4.1-6.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-6.2">"issuer_key_id" is the least significant byte of the <code>key_id</code>.<a href="#section-4.1-6.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-6.2">"token_key_id" is the least significant byte of the <code>key_id</code>.<a href="#section-4.1-6.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.1-6.3">"blinded_msg" is the Nk-octet request defined above.<a href="#section-4.1-6.3" class="pilcrow">¶</a>
 </li>
@@ -1547,7 +1547,7 @@ content-length = 514
 <ul class="normal">
 <li class="normal" id="section-4.1-10.1">The TokenRequest contains a supported token_type.<a href="#section-4.1-10.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-10.2">The TokenRequest.issuer_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-4.1-10.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-10.2">The TokenRequest.token_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-4.1-10.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.1-10.3">The TokenRequest.blinded_msg is of the correct size.<a href="#section-4.1-10.3" class="pilcrow">¶</a>
 </li>
