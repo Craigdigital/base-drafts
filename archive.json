@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-01-04T00:56:49.887966+00:00",
+  "timestamp": "2022-01-30T00:55:06.572311+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -5362,13 +5362,13 @@
       "labels": [],
       "body": "Built on the [latest architecture change](#86) and [HTTP-auth mechanism](https://github.com/tfpauly/privacy-proxy/blob/main/draft-pauly-privacypass-auth-scheme.md), and building on #83 as the opinionated approach. This includes both the POPRF variant and RSA variants.",
       "createdAt": "2021-12-13T23:09:55Z",
-      "updatedAt": "2022-01-03T23:18:14Z",
+      "updatedAt": "2022-01-28T23:21:05Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/pp-issuance",
-      "headRefOid": "4bfd0b6b7ca8f12cef2b1ec03ce4d718af7f2019",
+      "headRefOid": "d1507e22ead321431e33287574adf839b2e1e91b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -5803,6 +5803,76 @@
               "body": "Fixed \ud83d\udc4d ",
               "createdAt": "2022-01-03T23:18:13Z",
               "updatedAt": "2022-01-03T23:18:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84zqh-d",
+          "commit": {
+            "abbreviatedOid": "4bfd0b6"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-01-28T23:11:19Z",
+          "updatedAt": "2022-01-28T23:12:46Z",
+          "comments": [
+            {
+              "originalPosition": 431,
+              "body": "```suggestion\r\n   uint8_t token_key_id;\r\n```",
+              "createdAt": "2022-01-28T23:11:20Z",
+              "updatedAt": "2022-01-28T23:12:46Z"
+            },
+            {
+              "originalPosition": 453,
+              "body": "```suggestion\r\n- \"token_key_id\" is the least significant byte of the `key_id`.\r\n```",
+              "createdAt": "2022-01-28T23:11:38Z",
+              "updatedAt": "2022-01-28T23:12:47Z"
+            },
+            {
+              "originalPosition": 495,
+              "body": "```suggestion\r\n- The TokenRequest.token_key_id corresponds to a key ID of a Public Key owned by the issuer.\r\n```",
+              "createdAt": "2022-01-28T23:11:53Z",
+              "updatedAt": "2022-01-28T23:12:47Z"
+            },
+            {
+              "originalPosition": 710,
+              "body": "```suggestion\r\n   uint8_t token_key_id;\r\n```",
+              "createdAt": "2022-01-28T23:12:11Z",
+              "updatedAt": "2022-01-28T23:12:47Z"
+            },
+            {
+              "originalPosition": 756,
+              "body": "```suggestion\r\n- The TokenRequest.token_key_id corresponds to a key ID of a Public Key owned by the issuer.\r\n```",
+              "createdAt": "2022-01-28T23:12:41Z",
+              "updatedAt": "2022-01-28T23:12:47Z"
+            },
+            {
+              "originalPosition": 723,
+              "body": "```suggestion\r\n- \"token_key_id\" is the least significant byte of the `key_id`.\r\n```",
+              "createdAt": "2022-01-28T23:12:42Z",
+              "updatedAt": "2022-01-28T23:12:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84zqi_p",
+          "commit": {
+            "abbreviatedOid": "4ff79ca"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-01-28T23:20:59Z",
+          "updatedAt": "2022-01-28T23:20:59Z",
+          "comments": [
+            {
+              "originalPosition": 625,
+              "body": "```suggestion\r\nkey_id = SHA256(0x0001 || SerializeElement(pkI))\r\n```",
+              "createdAt": "2022-01-28T23:20:59Z",
+              "updatedAt": "2022-01-28T23:20:59Z"
             }
           ]
         }
