@@ -1284,16 +1284,18 @@ be provided by the redemption protocol in <span>[<a href="#HTTP-Authentication" 
       </ul>
 <p id="section-3-6">Both Client and Issuer also share a common public string called <code>info</code>.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">Given this configuration and these inputs, the two messages exchanged in
-this protocol are described below.<a href="#section-3-7" class="pilcrow">¶</a></p>
+this protocol are described below. This section uses notation described in
+<span>[<a href="#OPRF" class="xref">OPRF</a>], <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-voprf-08#section-4" class="relref">Section 4</a></span>, including SerializeElement and DeserializeElement,
+SerializeScalar and DeserializeScalar, and DeriveKeyPair.<a href="#section-3-7" class="pilcrow">¶</a></p>
 <div id="client-to-issuer">
 <section id="section-3.1">
         <h3 id="name-client-to-issuer-request">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-client-to-issuer-request" class="section-name selfRef">Client-to-Issuer Request</a>
         </h3>
-<p id="section-3.1-1">The Client first creates a verifiable context as follows:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">The Client first creates a context as follows:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.1-2">
 <pre>
-client_context = SetupVerifiableClient(0x0004, pkI)
+client_context = SetupPOPRFClient(0x0004, pkI)
 </pre><a href="#section-3.1-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1-3">Here, 0x0004 is the two-octet identifier corresponding to
@@ -1305,16 +1307,17 @@ using the input challenge and Issuer key identifier as follows:<a href="#section
 nonce = random(32)
 context = SHA256(challenge)
 token_input = concat(0x0001, nonce, context, key_id)
-blind, blinded_message = client_context.Blind(nonce)
+blind, blinded_msg, tweaked_key = client_context.Blind(nonce, info)
 </pre><a href="#section-3.1-5" class="pilcrow">¶</a>
 </div>
-<p id="section-3.1-6">The Client then creates a TokenRequest structured as follows:<a href="#section-3.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.1-6">If the Blind step fails, the Client aborts the protocol. Otherwise,
+the Client then creates a TokenRequest structured as follows:<a href="#section-3.1-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.1-7">
 <pre>
 struct {
    uint16_t token_type = 0x0001;
    uint8_t token_key_id;
-   uint8_t blinded_msg[Nk];
+   uint8_t blinded_request[Ne];
 } TokenRequest;
 </pre><a href="#section-3.1-7" class="pilcrow">¶</a>
 </div>
@@ -1324,13 +1327,14 @@ struct {
 </li>
           <li class="normal" id="section-3.1-9.2">"token_key_id" is the least significant byte of the <code>key_id</code>.<a href="#section-3.1-9.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-9.3">"blinded_msg" is the Nk-octet request defined above.<a href="#section-3.1-9.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-9.3">"blinded_request" is the Ne-octet blinded message defined above, computed as
+<code>SerializeElement(blinded_msg)</code>. Ne is as defined in <span>[<a href="#OPRF" class="xref">OPRF</a>], <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-voprf-08#section-4" class="relref">Section 4</a></span>.<a href="#section-3.1-9.3" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-3.1-10">The Client then generates an HTTP POST request to send to the Issuer,
+<p id="section-3.1-10">The value <code>tweaked_key</code> is stored locally and used later as described in <a href="#finalization" class="xref">Section 3.3</a>.
+The Client then generates an HTTP POST request to send to the Issuer,
 with the TokenRequest as the body. The media type for this request
-is "message/token-request". An example request is shown below, where
-Nk = 48.<a href="#section-3.1-10" class="pilcrow">¶</a></p>
+is "message/token-request". An example request is shown below.<a href="#section-3.1-10" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.1-11">
 <pre>
 :method = POST
@@ -1340,18 +1344,18 @@ Nk = 48.<a href="#section-3.1-10" class="pilcrow">¶</a></p>
 accept = message/token-response
 cache-control = no-cache, no-store
 content-type = message/token-request
-content-length = 50
+content-length = &lt;Length of TokenRequest&gt;
 
 &lt;Bytes containing the TokenRequest&gt;
 </pre><a href="#section-3.1-11" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1-12">Upon receipt of the request, the Issuer validates the following conditions:<a href="#section-3.1-12" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-13.1">The TokenRequest contains a supported token_type<a href="#section-3.1-13.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.1-13.1">The TokenRequest contains a supported token_type.<a href="#section-3.1-13.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-13.2">The TokenRequest.token_key_id corresponds to a key ID of a Public Key owned by the issuer.<a href="#section-3.1-13.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-13.3">The TokenRequest.blinded_msg is of the correct size<a href="#section-3.1-13.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-13.3">The TokenRequest.blinded_msg is of the correct size.<a href="#section-3.1-13.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-3.1-14">If any of these conditions is not met, the Issuer MUST return an HTTP 400 error
@@ -1367,8 +1371,8 @@ to the Client, which will forward the error to the client.<a href="#section-3.1-
 completes the issuance flow by computing a blinded response as follows:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.2-2">
 <pre>
-server_context = SetupVerifiableServer(0x0004, skI, pkI)
-evaluated_msg, proof = server_context.Evaluate(skI,
+server_context = SetupPOPRFServer(0x0004, skI, pkI)
+evaluate_msg, proof = server_context.Evaluate(skI,
     TokenRequest.blinded_message, info)
 </pre><a href="#section-3.2-2" class="pilcrow">¶</a>
 </div>
@@ -1376,23 +1380,31 @@ evaluated_msg, proof = server_context.Evaluate(skI,
 <div class="alignLeft art-text artwork" id="section-3.2-4">
 <pre>
 struct {
-   uint8_t evaluated_msg[Nk];
-   uint8_t proof[Ns+Ns];
+   uint8_t evaluate_response[Nk];
+   uint8_t evaluate_proof[Ns+Ns];
 } TokenResponse;
 </pre><a href="#section-3.2-4" class="pilcrow">¶</a>
 </div>
-<p id="section-3.2-5">The structure fields "evaluated_msg" and "proof" are as computed above,
-where Ns is as defined in <span>[<a href="#OPRF" class="xref">OPRF</a>], <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-voprf-08#section-4" class="relref">Section 4</a></span>.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
-<p id="section-3.2-6">The Issuer generates an HTTP response with status code 200 whose body consists
-of TokenResponse, with the content type set as "message/token-response".<a href="#section-3.2-6" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-7">
+<p id="section-3.2-5">The structure fields are defined as follows:<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-6.1">"evaluate_response" is the Ne-octet evaluated messaged, computed as
+<code>SerializeElement(evaluated_msg)</code>.<a href="#section-3.2-6.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.2-6.2">"evaluate_proof" is the (Ns+Ns)-octet serialized proof, which is a pair of Scalar values,
+computed as <code>concat(SerializeScalar(proof[0]), SerializeScalar(proof[1]))</code>,
+where Ns is as defined in <span>[<a href="#OPRF" class="xref">OPRF</a>], <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-voprf-08#section-4" class="relref">Section 4</a></span>.<a href="#section-3.2-6.2" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-3.2-7">The Issuer generates an HTTP response with status code 200 whose body consists
+of TokenResponse, with the content type set as "message/token-response".<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.2-8">
 <pre>
 :status = 200
 content-type = message/token-response
-content-length = 144
+content-length = &lt;Length of TokenResponse&gt;
 
 &lt;Bytes containing the TokenResponse&gt;
-</pre><a href="#section-3.2-7" class="pilcrow">¶</a>
+</pre><a href="#section-3.2-8" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -1401,12 +1413,15 @@ content-length = 144
         <h3 id="name-finalization">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-finalization" class="section-name selfRef">Finalization</a>
         </h3>
-<p id="section-3.3-1">Upon receipt, the Client handles the response and, if successful, processes the
-body as follows:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-1">Upon receipt, the Client handles the response and, if successful, deserializes
+the body values TokenResponse.evaluate_response and TokenResponse.evaluate_proof.
+If deserialization of any value fails, the Client aborts the protocol.
+Otherwise, when deserialization yields <code>evaluated_msg</code> and <code>proof</code>, the Client
+processes the response as follows:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.3-2">
 <pre>
 authenticator = client_context.Finalize(context, blind, pkI,
-  evaluated_msg, blinded_msg, info)
+  evaluated_msg, blinded_msg, info, tweaked_key)
 </pre><a href="#section-3.3-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.3-3">If this succeeds, the Client then constructs a Token as follows:<a href="#section-3.3-3" class="pilcrow">¶</a></p>
@@ -1434,7 +1449,8 @@ pkI, respectively, used to produce tokens. Each key pair MUST be generated as
 follows:<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.4-2">
 <pre>
-(skI, pkI) = GenerateKeyPair()
+seed = random(Ns)
+(skI, pkI) = DeriveKeyPair(seed, "PrivacyPass")
 </pre><a href="#section-3.4-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.4-3">The key identifier for this specific key pair, denoted <code>key_id</code>, is computed
@@ -1529,7 +1545,7 @@ Nk = 512.<a href="#section-4.1-7" class="pilcrow">¶</a></p>
 accept = message/token-response
 cache-control = no-cache, no-store
 content-type = message/token-request
-content-length = 514
+content-length = &lt;Length of TokenRequest&gt;
 
 &lt;Bytes containing the TokenRequest&gt;
 </pre><a href="#section-4.1-8" class="pilcrow">¶</a>
@@ -1565,7 +1581,7 @@ of <code>blind_sig</code>, with the content type set as "message/token-response"
 <pre>
 :status = 200
 content-type = message/token-response
-content-length = 512
+content-length = &lt;Length of TokenResponse&gt;
 
 &lt;Bytes containing the TokenResponse&gt;
 </pre><a href="#section-4.2-4" class="pilcrow">¶</a>
