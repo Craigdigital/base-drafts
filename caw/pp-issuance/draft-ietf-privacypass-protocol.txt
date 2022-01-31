@@ -155,8 +155,8 @@ Table of Contents
       described in Section 3.4.
 
    *  Challenge value challenge, an opaque byte string.  For example,
-      this might be provided by the redemption protocol in [http-auth-
-      doc].
+      this might be provided by the redemption protocol in
+      [HTTP-Authentication].
 
    Both Client and Issuer also share a common public string called info.
 
@@ -316,8 +316,8 @@ Table of Contents
       described in Section 4.4.
 
    *  Challenge value challenge, an opaque byte string.  For example,
-      this might be provided by the redemption protocol in [http-auth-
-      doc].
+      this might be provided by the redemption protocol in
+      [HTTP-Authentication].
 
    Given this configuration and these inputs, the two messages exchanged
    in this protocol are described below.
@@ -405,7 +405,7 @@ Table of Contents
    authenticator = rsabssa_finalize(pkI, nonce, blind_sig, blind_inv)
 
    If this succeeds, the Client then constructs a Token as described in
-   [http-auth-doc] as follows:
+   [HTTP-Authentication] as follows:
 
    struct {
        uint16_t token_type = 0x0002
@@ -559,12 +559,17 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
               rsa-blind-signatures-02>.
 
+   [HTTP-Authentication]
+              "The Privacy Pass HTTP Authentication Scheme", n.d.,
+              <https://datatracker.ietf.org/doc/html/draft-pauly-
+              privacypass-auth-scheme-00>.
+
    [I-D.ietf-privacypass-architecture]
-              Davidson, A. and C. A. Wood, "Privacy Pass Architectural
-              Framework", Work in Progress, Internet-Draft, draft-ietf-
-              privacypass-architecture-01, 22 February 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-
-              privacypass-architecture-01>.
+              Davidson, A., Iyengar, J., and C. A. Wood, "Privacy Pass
+              Architectural Framework", Work in Progress, Internet-
+              Draft, draft-ietf-privacypass-architecture-02, 31 January
+              2022, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              privacypass-architecture-02>.
 
    [I-D.ietf-privacypass-http-api]
               Valdez, S., "Privacy Pass HTTP API", Work in Progress,
