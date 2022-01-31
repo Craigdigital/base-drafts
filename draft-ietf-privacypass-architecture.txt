@@ -191,8 +191,8 @@ Table of Contents
    Clients with a token challenge and, if possible, Clients present a
    valid token for the challenge in response.  The challenge controls
    the type of token that the Origin will accept for the given resource.
-   As described in [http-auth-doc], there are a number of ways in which
-   the token may vary, including:
+   As described in [HTTP-Authentication], there are a number of ways in
+   which the token may vary, including:
 
    *  Issuance protocol.  The token identifies the type of issuance
       protocol required for producing the token.  Different issuance
@@ -802,6 +802,11 @@ Table of Contents
 7.  References
 
 7.1.  Normative References
+
+   [HTTP-Authentication]
+              "The Privacy Pass HTTP Authentication Scheme", n.d.,
+              <https://datatracker.ietf.org/doc/html/draft-pauly-
+              privacypass-auth-scheme-00>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
