@@ -166,7 +166,7 @@ Table of Contents
 
 3.1.  Client-to-Issuer Request
 
-   The Client first creates an OPRF context as follows:
+   The Client first creates a context as follows:
 
    client_context = SetupPOPRFClient(0x0004, pkI)
 
