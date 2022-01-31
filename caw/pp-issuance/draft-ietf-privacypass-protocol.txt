@@ -5,14 +5,14 @@
 Network Working Group                                            S. Celi
 Internet-Draft                                                Cloudflare
 Intended status: Informational                               A. Davidson
-Expires: 1 August 2022                                    Brave Software
+Expires: 4 August 2022                                    Brave Software
                                                         A. Faz-Hernandez
                                                               Cloudflare
                                                                S. Valdez
                                                               Google LLC
                                                                C.A. Wood
                                                               Cloudflare
-                                                         28 January 2022
+                                                         31 January 2022
 
 
                      Privacy Pass Issuance Protocol
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 August 2022.
+   This Internet-Draft will expire on 4 August 2022.
 
 Copyright Notice
 
@@ -154,8 +154,9 @@ Table of Contents
    *  Issuer Public Key pkI, with a key identifier key_id computed as
       described in Section 3.4.
 
-   *  Challenge value challenge, an opaque byte string provided by the
-      corresponding redemption protocol [http-auth-doc].
+   *  Challenge value challenge, an opaque byte string.  For example,
+      this might be provided by the redemption protocol in [http-auth-
+      doc].
 
    Both Client and Issuer also share a common public string called info.
 
@@ -264,8 +265,7 @@ Table of Contents
    authenticator = client_context.Finalize(context, blind, pkI,
      evaluated_msg, blinded_msg, info)
 
-   If this succeeds, the Client then constructs a Token as described in
-   [http-auth-doc] as follows:
+   If this succeeds, the Client then constructs a Token as follows:
 
    struct {
        uint16_t token_type = 0x0001
@@ -315,8 +315,9 @@ Table of Contents
    *  Issuer Public Key pkI, with a key identifier key_id computed as
       described in Section 4.4.
 
-   *  Challenge value challenge, an opaque byte string provided by the
-      corresponding redemption protocol [http-auth-doc].
+   *  Challenge value challenge, an opaque byte string.  For example,
+      this might be provided by the redemption protocol in [http-auth-
+      doc].
 
    Given this configuration and these inputs, the two messages exchanged
    in this protocol are described below.
