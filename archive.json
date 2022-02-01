@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-01-30T00:55:06.572311+00:00",
+  "timestamp": "2022-02-01T00:56:41.187857+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -657,7 +657,7 @@
       "id": "MDU6SXNzdWU2OTY2Njk5NDM=",
       "title": "Specify redemption mode in public config",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/44",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "alxdavids",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -668,12 +668,12 @@
       ],
       "body": "Servers should specify accepted redemption modes that they allow as a list associated with their public configuration. This would be a subset of the list `[\"single\", \"proxy\", \"async\", \"public\"]` corresponding to the redemptions modes in https://tools.ietf.org/html/draft-davidson-pp-architecture-01#section-5.\r\n\r\nIn all modes except \"single\" we should also allow optional specification of _allowed_ verifiers that can ask for tokens on the server's behalf. If one of these verifiers asks for a client token associated with the server, then the client will first check this list to ensure that the verifier exists before sending the token. This ensures that clients don't reveal which tokens they hold to untrusted verifiers.\r\n\r\ncc @chris-wood @dvorak42 ",
       "createdAt": "2020-09-09T09:54:40Z",
-      "updatedAt": "2021-02-19T16:54:24Z",
-      "closedAt": null,
+      "updatedAt": "2022-01-31T20:25:10Z",
+      "closedAt": "2022-01-31T20:25:09Z",
       "comments": [
         {
           "author": "chris-wood",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Interesting. To what extent are these modes determined by the underlying cryptographic protocol? (The public redemption mode, for example, is certainly dependent on the underlying protocol.) ",
           "createdAt": "2021-02-18T18:49:58Z",
           "updatedAt": "2021-02-18T18:49:58Z"
@@ -694,10 +694,17 @@
         },
         {
           "author": "chris-wood",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "It *seems* like a configuration should contain the minimal cryptographic information necessary to run the protocol securely. But this is indeed quite interesting because *who* clients run the protocol with may impact security. We could maybe allow for (sequences of) opaque identifiers to be provided in the config? Not sure. ",
           "createdAt": "2021-02-19T16:54:24Z",
           "updatedAt": "2021-02-19T16:54:24Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Overcome by events. Closing.",
+          "createdAt": "2022-01-31T20:25:09Z",
+          "updatedAt": "2022-01-31T20:25:09Z"
         }
       ]
     },
@@ -732,19 +739,19 @@
       "id": "MDU6SXNzdWU2OTY2OTkzNTc=",
       "title": "Remove exposure of token in proxied-verifier",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/46",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "alxdavids",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
+        "protocol",
         "architecture",
-        "not-ready",
-        "protocol"
+        "not-ready"
       ],
       "body": "Currently, in the proxied-verifier server running mode, the entire redemption token is sent to the server. However, we may be able to avoid this by only sending the initial `data` inside the RedemptionRequest, and keeping the `tag` and `info` at the proxy. This is because `data` is operated on under the server key, while the rest of the information is just added to a hash function evaluation. This means that the token issuer only sees the token (and can then implement double-spending protection based on this), but nothing else about the request to the verifier.\r\n\r\nThe change will probably drop the requirement for the `VerifyFinalize` API in the VOPRF doc, which is also advantageous. Originally discussed with @chris-wood, @siyengar, and Zutian Luo.",
       "createdAt": "2020-09-09T10:36:58Z",
-      "updatedAt": "2021-02-21T09:12:34Z",
-      "closedAt": null,
+      "updatedAt": "2022-01-31T20:24:56Z",
+      "closedAt": "2022-01-31T20:24:55Z",
       "comments": [
         {
           "author": "alxdavids",
@@ -759,6 +766,13 @@
           "body": "I don't think that we're quite ready to move forward with this, but we can consider it for a future draft release.",
           "createdAt": "2021-02-21T09:12:34Z",
           "updatedAt": "2021-02-21T09:12:34Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Overcome by events. Closing.",
+          "createdAt": "2022-01-31T20:24:55Z",
+          "updatedAt": "2022-01-31T20:24:55Z"
         }
       ]
     },
@@ -1232,6 +1246,26 @@
       "createdAt": "2021-12-30T14:58:25Z",
       "updatedAt": "2021-12-30T18:31:51Z",
       "closedAt": "2021-12-30T18:31:51Z",
+      "comments": []
+    },
+    {
+      "number": 90,
+      "id": "I_kwDODeTEy85CwDs-",
+      "title": "Expand upon correlation attacks and mitigations",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/90",
+      "state": "OPEN",
+      "author": "tfpauly",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [
+        "architecture"
+      ],
+      "body": "In the architecture document, we should have more discussion of correlation attacks and ways to mitigate. For example, interactive vs non-interactive tokens can making timing correlation attacks more or less relevant. For mitigations, the deployment model of issuer/origin (and attester) can make a difference.",
+      "createdAt": "2022-01-31T20:22:24Z",
+      "updatedAt": "2022-01-31T20:23:58Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -3800,21 +3834,21 @@
       "id": "MDExOlB1bGxSZXF1ZXN0Njg2ODI2NTQx",
       "title": "Add metadata considerations #63",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/78",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "claucece",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2021-07-09T14:19:34Z",
-      "updatedAt": "2021-07-27T20:23:06Z",
+      "updatedAt": "2022-01-31T20:32:52Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "cde660567c79230d4ac514e2567445ae478b63e2",
       "headRepository": "claucece/privacy-pass-ietf",
       "headRefName": "master",
       "headRefOid": "8bc153a0e592dd71de5f551e31081a535df19126",
-      "closedAt": null,
+      "closedAt": "2022-01-31T20:32:52Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -3825,6 +3859,13 @@
           "body": "cc.: @alxdavids @chris-wood @dvorak42 @armfazh ",
           "createdAt": "2021-07-23T14:25:16Z",
           "updatedAt": "2021-07-27T20:23:06Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as overcome by events.",
+          "createdAt": "2022-01-31T20:32:52Z",
+          "updatedAt": "2022-01-31T20:32:52Z"
         }
       ],
       "reviews": [
@@ -4146,21 +4187,21 @@
       "id": "PR_kwDODeTEy84scsTn",
       "title": "Initial attempt at integration doc",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/83",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "alxdavids",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This is my first draft of an integration document for replacing the current protocol doc. I've tried to keep it as concise as possible. A few questions:\r\n\r\n- Would it be better to be more specific about how the POPRF algorithms are used? Or is this level of detail sufficient?\r\n- Can we leave considerations about how public keys are distributed and consumed to the HTTP API doc?\r\n- Is it reasonable to leave metadata-level considerations to the architecture doc.\r\n\r\nLet me know what you think so far, cc @chris-wood, @bemasc, @dvorak42, @jsalowey, @claucece, @armfazh ",
       "createdAt": "2021-09-29T13:00:43Z",
-      "updatedAt": "2021-12-14T18:05:30Z",
+      "updatedAt": "2022-01-31T20:32:41Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "alxdavids/integration-doc",
       "headRefOid": "eb5c07d7519af27d37b535a035a85f2dee1c0cb5",
-      "closedAt": null,
+      "closedAt": "2022-01-31T20:32:41Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -4255,6 +4296,13 @@
           "body": "> I did this alignment in #87. @alxdavids, please have a look!\r\n\r\nSounds good, I will take a look at this tomorrow morning my time \ud83d\udc4d ",
           "createdAt": "2021-12-14T18:05:30Z",
           "updatedAt": "2021-12-14T18:05:30Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as overcome by events.",
+          "createdAt": "2022-01-31T20:32:41Z",
+          "updatedAt": "2022-01-31T20:32:41Z"
         }
       ],
       "reviews": [
@@ -4764,28 +4812,30 @@
       "id": "PR_kwDODeTEy84vxx2f",
       "title": "Refactor architecture document into PAT-like protocols and entities",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/86",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This reshuffles quite a bit to frame Privacy Pass as two protocols -- issuance and redemption -- run between Clients, Mediators, Issuers, and Origins. \r\n\r\nFirst draft, so there may be things we want to rephrase or reflow. \r\n\r\nRendered view of this PR [is here](https://ietf-wg-privacypass.github.io/base-drafts/caw/arch-refactor/draft-ietf-privacypass-architecture.html).",
       "createdAt": "2021-12-13T19:12:16Z",
-      "updatedAt": "2021-12-17T19:02:02Z",
+      "updatedAt": "2022-01-31T18:18:03Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/arch-refactor",
       "headRefOid": "b9f4685549adfea4ead4cc67421f74953cc22a06",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-01-31T18:18:03Z",
+      "mergedAt": "2022-01-31T18:18:03Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "99589afc196039fa7907877bf2ab0288c115b84b"
+      },
       "comments": [
         {
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Whitespace errors?\r\n```\r\ndraft-ietf-privacypass-architecture.md contains trailing whitespace\r\n48\r\n*** Run 'make fix-lint' to automatically fix some errors\r\n49\r\nmake: *** [lib/main.mk:205: lint-whitespace] Error 1\r\n```",
           "createdAt": "2021-12-17T19:00:50Z",
           "updatedAt": "2021-12-17T19:00:50Z"
@@ -4796,6 +4846,13 @@
           "body": "@tfpauly fixed!",
           "createdAt": "2021-12-17T19:02:01Z",
           "updatedAt": "2021-12-17T19:02:01Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Merging this per the discussion during the interim meeting today. ",
+          "createdAt": "2022-01-31T18:17:56Z",
+          "updatedAt": "2022-01-31T18:17:56Z"
         }
       ],
       "reviews": [
@@ -4805,7 +4862,7 @@
             "abbreviatedOid": "c44ed07"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-13T19:30:12Z",
@@ -4917,7 +4974,7 @@
             "abbreviatedOid": "4055e17"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-13T20:34:42Z",
@@ -4937,7 +4994,7 @@
             "abbreviatedOid": "4055e17"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-13T20:42:08Z",
@@ -4957,7 +5014,7 @@
             "abbreviatedOid": "4055e17"
           },
           "author": "janaiyengar",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "A few comments, but this is a great cut! Thanks, Chris!",
           "createdAt": "2021-12-14T07:08:17Z",
@@ -5095,7 +5152,7 @@
             "abbreviatedOid": "c02812e"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-14T19:24:54Z",
@@ -5135,7 +5192,7 @@
             "abbreviatedOid": "33fbe78"
           },
           "author": "janaiyengar",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "A few comments; thanks for the quick turnaround!",
           "createdAt": "2021-12-15T05:46:57Z",
@@ -5341,7 +5398,7 @@
             "abbreviatedOid": "b39ceb8"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2021-12-17T19:01:02Z",
@@ -5355,24 +5412,26 @@
       "id": "PR_kwDODeTEy84vymk_",
       "title": "Aligned issuance protocol",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/87",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Built on the [latest architecture change](#86) and [HTTP-auth mechanism](https://github.com/tfpauly/privacy-proxy/blob/main/draft-pauly-privacypass-auth-scheme.md), and building on #83 as the opinionated approach. This includes both the POPRF variant and RSA variants.",
       "createdAt": "2021-12-13T23:09:55Z",
-      "updatedAt": "2022-01-28T23:21:05Z",
+      "updatedAt": "2022-01-31T20:32:57Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "920b6e608e2774837ae23487a4d772d6f7a2b5e3",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/pp-issuance",
-      "headRefOid": "d1507e22ead321431e33287574adf839b2e1e91b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "aec91490d961d6ffb446769d1939e69511586d51",
+      "closedAt": "2022-01-31T20:32:57Z",
+      "mergedAt": "2022-01-31T20:32:57Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "ca578b74eebf8372fc5d75f1d325c9f670b30afb"
+      },
       "comments": [],
       "reviews": [
         {
@@ -5381,7 +5440,7 @@
             "abbreviatedOid": "5ccc88b"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-13T23:44:26Z",
@@ -5413,7 +5472,7 @@
             "abbreviatedOid": "26f381d"
           },
           "author": "janaiyengar",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "LGTM, a couple of nits.",
           "createdAt": "2021-12-15T06:37:51Z",
@@ -5459,7 +5518,7 @@
             "abbreviatedOid": "e435a2e"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2021-12-15T15:53:49Z",
@@ -5544,7 +5603,7 @@
             "abbreviatedOid": "f87c7f9"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-15T21:27:44Z",
@@ -5564,7 +5623,7 @@
             "abbreviatedOid": "f87c7f9"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-15T21:29:04Z",
@@ -5584,7 +5643,7 @@
             "abbreviatedOid": "f8f0748"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-15T23:08:31Z",
@@ -5604,7 +5663,7 @@
             "abbreviatedOid": "f8f0748"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-15T23:08:56Z",
@@ -5624,7 +5683,7 @@
             "abbreviatedOid": "f8f0748"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-15T23:09:10Z",
@@ -5644,7 +5703,7 @@
             "abbreviatedOid": "f8f0748"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-12-15T23:09:46Z",
@@ -5676,7 +5735,7 @@
             "abbreviatedOid": "87c941f"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "Aligning terminology...",
           "createdAt": "2021-12-15T23:29:01Z",
@@ -5732,7 +5791,7 @@
             "abbreviatedOid": "375a304"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2022-01-03T19:46:45Z",
@@ -5752,7 +5811,7 @@
             "abbreviatedOid": "375a304"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2022-01-03T23:13:40Z",
@@ -5812,7 +5871,7 @@
             "abbreviatedOid": "4bfd0b6"
           },
           "author": "tfpauly",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2022-01-28T23:11:19Z",
@@ -5937,6 +5996,55 @@
           "createdAt": "2021-12-17T13:19:50Z",
           "updatedAt": "2021-12-17T13:19:50Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 91,
+      "id": "PR_kwDODeTEy84x3mw7",
+      "title": "Align POPRF issuance with the latest VOPRF draft",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/91",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "draft-irtf-cfrg-voprf-09 went out today, and this just aligns the basic issuance protocol on top of those changes. \r\n\r\ncc @armfazh ",
+      "createdAt": "2022-01-31T23:10:56Z",
+      "updatedAt": "2022-01-31T23:33:38Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "80dac5d600b7ba250d5b3f30b75a560df59ee31a",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/align-poprf",
+      "headRefOid": "9db25e1d3eeaf49ac52c9d68d775215496ed8360",
+      "closedAt": "2022-01-31T23:33:38Z",
+      "mergedAt": "2022-01-31T23:33:38Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "a3f9004e932831a6284723fa74209e260c6500be"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy84zxKb5",
+          "commit": {
+            "abbreviatedOid": "25792e3"
+          },
+          "author": "armfazh",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-01-31T23:17:12Z",
+          "updatedAt": "2022-01-31T23:19:14Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nThe Client first creates a context as follows:\r\n```",
+              "createdAt": "2022-01-31T23:17:12Z",
+              "updatedAt": "2022-01-31T23:19:14Z"
+            }
+          ]
         }
       ]
     }
