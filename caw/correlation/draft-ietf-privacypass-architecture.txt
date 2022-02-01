@@ -470,7 +470,7 @@ Table of Contents
    ways in which these two events could be linked together, which we
    refer to as correlation.
 
-   Correlation can problematic from a privacy perspective.  To
+   Correlation can be problematic from a privacy perspective.  To
    demonstrate why, consider the lifecycle of a cross-origin token.
    Clients may invoke the issuance protocol in one context, e.g., when
    visiting site foo.example, but redeem the token in another context,
@@ -487,7 +487,8 @@ Table of Contents
    for website foo.example at time T.  Let cI and sI be the Client and
    context pair associated with an issuance event.  Similarly, let cR
    and sR be the Client and context pair associated with a redemption
-   event.  Correlation is possible if sI = sR or cI = cR.
+   event.  We refer to context correlation as the case where cI = cR,
+   and source correlation as the case where sI = sR.
 
    Context correlation is possible through a number of different ways.
    The following list covers some examples:
@@ -510,10 +511,10 @@ Table of Contents
    issuance protocol and redemption protocol, or where one Client ran
    the issuance protocol and another client ran the redemption protocol.
 
-   Moreover, clients can control whether or not correlation occurs by
-   separating their Client identifiers presented to servers, e.g., by
-   using an attester or other proxy service to relay token requests or
-   hide their identity from the issuer (or origin).
+   Moreover, clients can control source correlation by separating their
+   Client identifiers presented to servers, e.g., by using an attester
+   or other proxy service to relay token requests or hide their identity
+   from the issuer (or origin).
 
 4.2.  Metadata privacy implications
 
