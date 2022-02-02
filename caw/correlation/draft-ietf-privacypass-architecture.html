@@ -1628,7 +1628,7 @@ the Privacy Pass ecosystem must implement to prevent these actions.<a href="#sec
         </h3>
 <p id="section-4.1-1">One of the requirements of the issuance protocol as described in <a href="#issuance-protocol" class="xref">Section 3.2</a>
 is that it needs to provide unconditional input secrecy. This means that an issuance event
-and its corresponding redemption events are unlinkable using the contents of
+and its corresponding redemption event are unlinkable using the contents of
 a token. However, there are other ways in which these two events could be linked
 together, which we refer to as correlation.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">Correlation can be problematic from a privacy perspective. To demonstrate why,
@@ -1658,6 +1658,10 @@ based solely on the presence of the events.<a href="#section-4.1-5.1" class="pil
 </li>
           <li class="normal" id="section-4.1-5.2">The origin for an issuance and redemption event can be unique for a given Client,
 allowing an attacker to link both events.<a href="#section-4.1-5.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.1-5.3">State associated with an issuance protocol. In the event that issuance protocols
+are stateful, e.g., by limiting the number of issuance events allowed by any one
+Client, this state could be used to correlate issuance and redemption.<a href="#section-4.1-5.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-4.1-6">Depending on the Client identifiers used, context correlation may not constitute

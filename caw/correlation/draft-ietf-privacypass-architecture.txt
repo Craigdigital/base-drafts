@@ -466,7 +466,7 @@ Table of Contents
    One of the requirements of the issuance protocol as described in
    Section 3.2 is that it needs to provide unconditional input secrecy.
    This means that an issuance event and its corresponding redemption
-   events are unlinkable using the contents of a token.  However, there
+   event are unlinkable using the contents of a token.  However, there
    are other ways in which these two events could be linked together,
    which we refer to as correlation.
 
@@ -503,6 +503,11 @@ Table of Contents
 
    *  The origin for an issuance and redemption event can be unique for
       a given Client, allowing an attacker to link both events.
+
+   *  State associated with an issuance protocol.  In the event that
+      issuance protocols are stateful, e.g., by limiting the number of
+      issuance events allowed by any one Client, this state could be
+      used to correlate issuance and redemption.
 
    Depending on the Client identifiers used, context correlation may not
    constitute a privacy violation.  In particular, because tokens are
