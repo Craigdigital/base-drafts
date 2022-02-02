@@ -464,11 +464,11 @@ Table of Contents
 4.1.  Correlation attacks
 
    One of the requirements of the issuance protocol as described in
-   Section 3.2 is that it provide unconditional input secrecy.  This
-   means that an issuance and its corresponding redemption events are
-   unlinkable using the contents of a token.  However, there are other
-   ways in which these two events could be linked together, which we
-   refer to as correlation.
+   Section 3.2 is that it needs to provide unconditional input secrecy.
+   This means that an issuance event and its corresponding redemption
+   events are unlinkable using the contents of a token.  However, there
+   are other ways in which these two events could be linked together,
+   which we refer to as correlation.
 
    Correlation can be problematic from a privacy perspective.  To
    demonstrate why, consider the lifecycle of a cross-origin token.
