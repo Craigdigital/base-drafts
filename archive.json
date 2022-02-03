@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-02-01T00:56:41.187857+00:00",
+  "timestamp": "2022-02-03T00:53:06.032385+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -6043,6 +6043,371 @@
               "body": "```suggestion\r\nThe Client first creates a context as follows:\r\n```",
               "createdAt": "2022-01-31T23:17:12Z",
               "updatedAt": "2022-01-31T23:19:14Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 92,
+      "id": "PR_kwDODeTEy84x62Vm",
+      "title": "Address correlation attacks",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/92",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Drafty draft that addresses #90. I tried to generalize the problem and focus on correlation via either the _source_ for an event, like the client IP address or whatever, and the _context_ of an event, like the timestamp at which it occurs or the origin associated with the event. It is not a tremendous problem if two things are correlated via context so long as the clients are not linkable. (This is the argument with things like ODoH, where we can't link any two requests to the same client, but we can link two requests as being related.) What's most important here, I think, is source correlation, and clients can control this by working _through_ an attester or some other proxy.\r\n\r\nWhat do folks think?\r\n\r\nStarting as a draft while we work on the presentation.\r\n\r\nCloses #90.",
+      "createdAt": "2022-02-01T17:33:56Z",
+      "updatedAt": "2022-02-02T20:00:43Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "a3f9004e932831a6284723fa74209e260c6500be",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/correlation",
+      "headRefOid": "817ee205851e084604d336fdbd45ccacc24bd47e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@tfpauly @dvorak42 @alxdavids ready for review now. @janaiyengar, please have a look, too!",
+          "createdAt": "2022-02-02T19:28:08Z",
+          "updatedAt": "2022-02-02T19:28:08Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy84z1Dd8",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "bemasc",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T17:43:26Z",
+          "updatedAt": "2022-02-01T17:55:34Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "I don't think this is in scope unless we are also going to discuss architectures and protocols for (safe?) client-to-client token sharing.",
+              "createdAt": "2022-02-01T17:43:26Z",
+              "updatedAt": "2022-02-01T17:55:34Z"
+            },
+            {
+              "originalPosition": 50,
+              "body": "If the issuer doesn't know the client's identity, then it seems to me that the client doesn't need to use blind signatures at all. If this use case is in-scope, I think it would be clearer to offer a very simple Issuance Algorithm that is well-suited for it (e.g. plain ECDSA).",
+              "createdAt": "2022-02-01T17:50:22Z",
+              "updatedAt": "2022-02-01T17:55:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z1Mbz",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T18:02:53Z",
+          "updatedAt": "2022-02-01T18:02:54Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "This is noting that clients _can_ be transferred.",
+              "createdAt": "2022-02-01T18:02:53Z",
+              "updatedAt": "2022-02-01T18:02:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z1Lnf",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T18:00:56Z",
+          "updatedAt": "2022-02-01T18:03:16Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "Maybe I'm mixing up terminology, but with per-origin tokens, the issuance context is still the mediator/issuer, while the redemption context is the origin you're getting tokens for?\r\n\r\nWhich means you can still have a malicious entity try linking your mediator-specific state with a particular redemption even with per-origin tokens?",
+              "createdAt": "2022-02-01T18:00:57Z",
+              "updatedAt": "2022-02-01T18:03:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z1Mo4",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T18:03:20Z",
+          "updatedAt": "2022-02-01T18:03:20Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "Sure -- this is why we have the registry of issuance protocols. =)",
+              "createdAt": "2022-02-01T18:03:20Z",
+              "updatedAt": "2022-02-01T18:03:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z1Owz",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T18:08:09Z",
+          "updatedAt": "2022-02-01T18:08:09Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "> Maybe I'm mixing up terminology, but with per-origin tokens, the issuance context is still the mediator/issuer, while the redemption context is the origin you're getting tokens for?\r\n\r\nIt depends on the issuance protocol. For per-origin rate-limited tokens, for example, the issuer learns the origin, so the issuance context would include the origin. \r\n\r\nI didn't get into whether or not the attester and issuer are lumped together here.\r\n\r\n> Which means you can still have a malicious entity try linking your mediator-specific state with a particular redemption even with per-origin tokens?\r\n\r\nIf I understand correctly, this is true. Attester state, as in the rate limited case, could possibly be used for linking. We could somehow note that?",
+              "createdAt": "2022-02-01T18:08:09Z",
+              "updatedAt": "2022-02-01T18:08:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z1q2q",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T19:20:14Z",
+          "updatedAt": "2022-02-01T19:20:17Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "Maybe just a quick sentence about it, and then expand on it once we discuss the rate limited case where the attester has actual state that could be linked? Though maybe waiting until then is okay.",
+              "createdAt": "2022-02-01T19:20:14Z",
+              "updatedAt": "2022-02-01T19:20:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z2NFB",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "bemasc",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T21:27:50Z",
+          "updatedAt": "2022-02-01T21:49:39Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "I don't think we can hang our privacy safety claim on a client behavior that is never otherwise standardized, recommended, or even discussed.  Also, this kind of sharing is unsafe in general, and seems unlikely to occur in practice without substantial changes to Privacy Pass.\r\n\r\nIf you want to open this can of worms, I think you have to open it all the way.",
+              "createdAt": "2022-02-01T21:27:50Z",
+              "updatedAt": "2022-02-01T21:49:39Z"
+            },
+            {
+              "originalPosition": 50,
+              "body": "If this architecture  and protocol are intended to cover that use case, then we have an interesting charter discussion, because the charter says: \"An Issuer cannot link a redeemed token to one of N previously created tokens\r\nusing the same key\".\r\n\r\nIf we are covering use cases that have very small effective `N`, even `N=1`, I think that needs to be made very clear to the working group.  Defining a non-blinded token algorithm now could be a good way to focus that discussion.",
+              "createdAt": "2022-02-01T21:35:49Z",
+              "updatedAt": "2022-02-01T21:49:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z2V3s",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T22:08:33Z",
+          "updatedAt": "2022-02-01T22:08:33Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "I think there's a misunderstanding here. Per the charter, a goal of this protocol is to \"specify an extensible protocol for creating and redeeming anonymous and transferrable tokens.\" The key word is _transferrable_. This paragraph is simply acknowledging that tokens _can_ in fact be transferred amongst clients -- by design! It is by no means encouraging this behavior. The can of worms is already open.",
+              "createdAt": "2022-02-01T22:08:33Z",
+              "updatedAt": "2022-02-01T22:08:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z2WGq",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T22:09:39Z",
+          "updatedAt": "2022-02-01T22:09:39Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "> If we are covering use cases that have very small effective N, even N=1, I think that needs to be made very clear to the working group. Defining a non-blinded token algorithm now could be a good way to focus that discussion.\r\n\r\nI disagree. The value of N is _entirely_ deployment specific. It cannot be addressed in the protocol, without an incredibly different design. ",
+              "createdAt": "2022-02-01T22:09:39Z",
+              "updatedAt": "2022-02-01T22:09:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z2WM_",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-01T22:10:10Z",
+          "updatedAt": "2022-02-01T22:10:10Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "A sentence would be good, yeah, noting that issuance protocol state can be used for linking. ",
+              "createdAt": "2022-02-01T22:10:10Z",
+              "updatedAt": "2022-02-01T22:10:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z6e7G",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-02T18:43:30Z",
+          "updatedAt": "2022-02-02T18:49:59Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nis that it needs to provide unconditional input secrecy. This means that an issuance event\r\n```",
+              "createdAt": "2022-02-02T18:43:30Z",
+              "updatedAt": "2022-02-02T18:49:59Z"
+            },
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nand its corresponding redemption event are unlinkable using the contents of\r\n```",
+              "createdAt": "2022-02-02T18:44:09Z",
+              "updatedAt": "2022-02-02T18:49:59Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\nbar.example are related. In contrast, per-origin token contexts are limited a single origin,\r\n```",
+              "createdAt": "2022-02-02T18:45:04Z",
+              "updatedAt": "2022-02-02T18:49:59Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "How realistic is the handing-off tokens case? If it's not very common, it doesn't seem like a strong mitigation.",
+              "createdAt": "2022-02-02T18:46:31Z",
+              "updatedAt": "2022-02-02T18:49:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z6hNE",
+          "commit": {
+            "abbreviatedOid": "465c3c8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-02T18:51:23Z",
+          "updatedAt": "2022-02-02T18:51:23Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "This isn't meant to suggest it as a mitigation. It's merely meant to say that an origin cannot guarantee that the same client which went through issuance is the same client which redeemed a token, because they're transferrable. (What part of the text suggests this is a mitigation?)",
+              "createdAt": "2022-02-02T18:51:23Z",
+              "updatedAt": "2022-02-02T19:02:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z6iNA",
+          "commit": {
+            "abbreviatedOid": "3af875b"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-02T18:54:11Z",
+          "updatedAt": "2022-02-02T18:54:11Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "It doesn't directly say it's a mitigation, I was just inferring that.",
+              "createdAt": "2022-02-02T18:54:11Z",
+              "updatedAt": "2022-02-02T18:54:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z6i0W",
+          "commit": {
+            "abbreviatedOid": "3af875b"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-02T18:55:54Z",
+          "updatedAt": "2022-02-02T18:55:54Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "Ah, okay, is there any way we could clarify? (@bemasc zeroed in on this as well, so surely the text could be improved.)",
+              "createdAt": "2022-02-02T18:55:54Z",
+              "updatedAt": "2022-02-02T18:55:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy84z6otL",
+          "commit": {
+            "abbreviatedOid": "3af875b"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-02T19:27:26Z",
+          "updatedAt": "2022-02-02T19:27:26Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "@dvorak42 added state example!",
+              "createdAt": "2022-02-02T19:27:26Z",
+              "updatedAt": "2022-02-02T19:27:26Z"
             }
           ]
         }
