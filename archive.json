@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-02-03T00:53:06.032385+00:00",
+  "timestamp": "2022-02-06T01:02:36.710841+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -594,20 +594,20 @@
       "id": "MDU6SXNzdWU2NTQ4MTQ1NTI=",
       "title": "Define extension for public verifiability",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/40",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "chris-wood"
       ],
       "labels": [
-        "not-ready",
-        "protocol"
+        "protocol",
+        "not-ready"
       ],
       "body": "Per the charter.",
       "createdAt": "2020-07-10T14:17:42Z",
-      "updatedAt": "2021-07-16T21:36:27Z",
-      "closedAt": null,
+      "updatedAt": "2022-02-04T21:47:14Z",
+      "closedAt": "2022-02-04T21:47:14Z",
       "comments": [
         {
           "author": "alxdavids",
@@ -615,6 +615,13 @@
           "body": "Potential instantiation highlighted by @wbl on the mailing list: https://mailarchive.ietf.org/arch/msg/privacy-pass/BDOOhSLwB3uUJcfBiss6nUF5sUA/. Do we want to consider any other schemes?",
           "createdAt": "2020-08-11T11:37:21Z",
           "updatedAt": "2020-08-11T11:37:21Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved in #87.",
+          "createdAt": "2022-02-04T21:47:14Z",
+          "updatedAt": "2022-02-04T21:47:14Z"
         }
       ]
     },
@@ -1266,6 +1273,40 @@
       "createdAt": "2022-01-31T20:22:24Z",
       "updatedAt": "2022-01-31T20:23:58Z",
       "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 93,
+      "id": "I_kwDODeTEy85DCLrG",
+      "title": "Add issuance test vectors",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/93",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "protocol"
+      ],
+      "body": "These test vectors should cover the whole flow of the protocol, starting with the `TokenChallenge` input and producing a `Token` output.",
+      "createdAt": "2022-02-04T21:46:44Z",
+      "updatedAt": "2022-02-04T21:46:54Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 95,
+      "id": "I_kwDODeTEy85DC-wf",
+      "title": "youtube",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/95",
+      "state": "CLOSED",
+      "author": "jheng21",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "m.me/AgentJenny143",
+      "createdAt": "2022-02-05T06:56:48Z",
+      "updatedAt": "2022-02-05T16:54:17Z",
+      "closedAt": "2022-02-05T16:54:17Z",
       "comments": []
     }
   ],
@@ -6060,7 +6101,7 @@
       "labels": [],
       "body": "Drafty draft that addresses #90. I tried to generalize the problem and focus on correlation via either the _source_ for an event, like the client IP address or whatever, and the _context_ of an event, like the timestamp at which it occurs or the origin associated with the event. It is not a tremendous problem if two things are correlated via context so long as the clients are not linkable. (This is the argument with things like ODoH, where we can't link any two requests to the same client, but we can link two requests as being related.) What's most important here, I think, is source correlation, and clients can control this by working _through_ an attester or some other proxy.\r\n\r\nWhat do folks think?\r\n\r\nStarting as a draft while we work on the presentation.\r\n\r\nCloses #90.",
       "createdAt": "2022-02-01T17:33:56Z",
-      "updatedAt": "2022-02-02T20:00:43Z",
+      "updatedAt": "2022-02-04T20:21:58Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "a3f9004e932831a6284723fa74209e260c6500be",
@@ -6410,8 +6451,286 @@
               "updatedAt": "2022-02-02T19:27:26Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840AX-C",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "janaiyengar",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-03T23:07:14Z",
+          "updatedAt": "2022-02-03T23:07:14Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "Do we need this paragraph?",
+              "createdAt": "2022-02-03T23:07:14Z",
+              "updatedAt": "2022-02-03T23:07:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840AYA7",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "janaiyengar",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "One comment, else looks good!",
+          "createdAt": "2022-02-03T23:07:35Z",
+          "updatedAt": "2022-02-03T23:07:35Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy840AYL2",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "janaiyengar",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-03T23:08:41Z",
+          "updatedAt": "2022-02-03T23:08:42Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "I had the same read as tfpauly -- that this suggests a mitigation, but you're right that it doesn't. If it's not a common use case, why use this example? And I'm then wondering if removing it entirely removes anything importnat -- it seems to me that it doesnt.",
+              "createdAt": "2022-02-03T23:08:41Z",
+              "updatedAt": "2022-02-03T23:08:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840AYoI",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-03T23:11:27Z",
+          "updatedAt": "2022-02-03T23:11:27Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "I think this paragraph is important because it notes that linking issuance and redemption together may not constitute an actual attack. Token transfer is a fundamental property of this protocol. This text acknowledges that property.",
+              "createdAt": "2022-02-03T23:11:27Z",
+              "updatedAt": "2022-02-03T23:11:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840AY7A",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "janaiyengar",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "ok, sounds good -- thanks for working on this, @chris-wood !",
+          "createdAt": "2022-02-03T23:13:20Z",
+          "updatedAt": "2022-02-03T23:13:20Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy840DMII",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-02-04T15:42:01Z",
+          "updatedAt": "2022-02-04T15:42:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy840D6cg",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-02-04T18:33:49Z",
+          "updatedAt": "2022-02-04T18:33:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy840D_sf",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "bemasc",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-04T18:54:08Z",
+          "updatedAt": "2022-02-04T18:54:09Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "I still don't think this text is helpful.  Most digital identification systems have this transferability property.  Passwords, private keys, even hardware tokens are all transferable between people.  Transferability is trivial unless there's a reason to expect it will be unusually common.\r\n\r\nThis text seems to be arguing against the strawman position that correlation _always_ harms privacy.  In general, I don't think that there is any technical action that _always_ harms privacy.  The important question is whether there is some real use case where an otherwise-dangerous thing becomes safe.  I would prefer to see the focus there.",
+              "createdAt": "2022-02-04T18:54:08Z",
+              "updatedAt": "2022-02-04T18:54:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840EKJI",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-04T19:41:21Z",
+          "updatedAt": "2022-02-04T19:41:21Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "> I still don't think this text is helpful. Most digital identification systems have this transferability property. Passwords, private keys, even hardware tokens are all transferable between people. Transferability is trivial unless there's a reason to expect it will be unusually common.\r\n> \r\n> This text seems to be arguing against the strawman position that correlation always harms privacy. In general, I don't think that there is any technical action that always harms privacy. The important question is whether there is some real use case where an otherwise-dangerous thing becomes safe. I would prefer to see the focus there.\r\n\r\nI'm trying to understand you but am failing to do so. Surely there are technical actions that always harm privacy. For example, never using HTTPS is harmful, revealing your IP address and other fingerprinting information to an origin is harmful, allowing third-party cookies to track you is harmful, etc. \r\n\r\nIs your objection to the phrasing \"privacy violation\"? If not, what is it?",
+              "createdAt": "2022-02-04T19:41:21Z",
+              "updatedAt": "2022-02-04T19:41:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840EPtC",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-04T20:05:21Z",
+          "updatedAt": "2022-02-04T20:05:21Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "In an attempt to find a compromise, here's a proposed rephrasing of the text:\r\n\r\n~~~\r\nContext correlation between two events may not constitute a privacy violation if \r\nthere is no source correlation between those two events. For example, if issuance\r\nfor a visit to foo.example was correlated to redemption of a visit to bar.example,\r\nyet the source for these two events was uncorrelated, then one only learns that these\r\ntwo events are related and might be associated with the same source (Client). In\r\ncontrast, if the source of these two events were correlated, then one learns that \r\nthe two visits correspond to the same source (Client), thereby leaking browsing history.\r\n~~~\r\n\r\n@tfpauly, @janaiyengar, @bemasc, is this an improvement?",
+              "createdAt": "2022-02-04T20:05:21Z",
+              "updatedAt": "2022-02-04T20:05:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840ERI5",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "bemasc",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-04T20:12:42Z",
+          "updatedAt": "2022-02-04T20:12:42Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "One way to frame the problem is that this text describes a \"scenario\" involving multiple clients (an \"acquiring client\" and \"redeeming client\"), but this scenario is not contemplated in Section 3, which defines the scope of this design as involving only 4 communicating parties.  We shouldn't be performing security analysis based on scenarios that aren't in scope.\r\n\r\nIt seems like this section inverts the ordinary logic of security analysis.  Instead of asking \"is there any strange situation where this could be dangerous?\", it asks \"is there any strange situation where this could be safe?\".\r\n\r\n> For example, never using HTTPS is harmful\r\n\r\nYes, and this text is like \"Depending on the content used, insecure HTTPS may not be a privacy violation.  In particular, because the HTTP payload may already be encrypted using HPKE, ...\".  This is true, but it's not helpful unless that is a relevant, reasonably common use case.",
+              "createdAt": "2022-02-04T20:12:42Z",
+              "updatedAt": "2022-02-04T20:12:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840ERo5",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-04T20:15:14Z",
+          "updatedAt": "2022-02-04T20:15:15Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "> One way to frame the problem is that this text describes a \"scenario\" involving multiple clients (an \"acquiring client\" and \"redeeming client\"), but this scenario is not contemplated in Section 3, which defines the scope of this design as involving only 4 communicating parties. We shouldn't be performing security analysis based on scenarios that aren't in scope.\r\n\r\nI very strongly disagree with this statement! The protocol is defined in terms of 4 parties, but security and privacy need to account for multiple instances of each. This is fairly common practice.",
+              "createdAt": "2022-02-04T20:15:14Z",
+              "updatedAt": "2022-02-04T20:15:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840ESC0",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "bemasc",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-04T20:17:18Z",
+          "updatedAt": "2022-02-04T20:17:18Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "Yes, it cannot be addressed in the protocol, but it can be addressed in the architecture documentation, and already is, in section 6.  That section's analysis is invalidated by these changes, and needs to be updated.",
+              "createdAt": "2022-02-04T20:17:18Z",
+              "updatedAt": "2022-02-04T20:17:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy840ESNw",
+          "commit": {
+            "abbreviatedOid": "817ee20"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-02-04T20:18:12Z",
+          "updatedAt": "2022-02-04T20:18:12Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "~~Sure. Separate PR.~~\r\n\r\nActually, I take that back. I don't think this invalidates Section 6, as that section is already somewhat meaningless. I'm going to propose updating that section in a separate change.",
+              "createdAt": "2022-02-04T20:18:12Z",
+              "updatedAt": "2022-02-04T20:21:58Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 94,
+      "id": "PR_kwDODeTEy84yGyI8",
+      "title": "Point to OPRF and blind RSA function definitions",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/94",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "It's not obvious where to find these things!\r\n\r\ncc @armfazh ",
+      "createdAt": "2022-02-04T21:49:49Z",
+      "updatedAt": "2022-02-04T21:49:49Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "a3f9004e932831a6284723fa74209e260c6500be",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/function-pointers",
+      "headRefOid": "e364bf0f8e6fefe81eae0c28d1506e320b725e99",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
