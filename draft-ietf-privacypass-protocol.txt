@@ -5,14 +5,14 @@
 Network Working Group                                            S. Celi
 Internet-Draft                                                Cloudflare
 Intended status: Informational                               A. Davidson
-Expires: 4 August 2022                                    Brave Software
+Expires: 11 August 2022                                   Brave Software
                                                         A. Faz-Hernandez
                                                               Cloudflare
                                                                S. Valdez
                                                               Google LLC
                                                                C.A. Wood
                                                               Cloudflare
-                                                         31 January 2022
+                                                         7 February 2022
 
 
                      Privacy Pass Issuance Protocol
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2022.
+   This Internet-Draft will expire on 11 August 2022.
 
 Copyright Notice
 
@@ -171,7 +171,8 @@ Table of Contents
    client_context = SetupPOPRFClient(0x0004, pkI)
 
    Here, 0x0004 is the two-octet identifier corresponding to the
-   OPRF(P-384, SHA-384) ciphersuite in [OPRF].
+   OPRF(P-384, SHA-384) ciphersuite in [OPRF].  SetupPOPRFClient is
+   defined in [OPRF], Section 3.2.
 
    The Client then creates an issuance request message for a random
    value nonce using the input challenge and Issuer key identifier as
@@ -182,8 +183,9 @@ Table of Contents
    token_input = concat(0x0001, nonce, context, key_id)
    blind, blinded_msg, tweaked_key = client_context.Blind(nonce, info)
 
-   If the Blind step fails, the Client aborts the protocol.  Otherwise,
-   the Client then creates a TokenRequest structured as follows:
+   The Blind function is defined in [OPRF], Section 3.3.3.  If the Blind
+   function fails, the Client aborts the protocol.  Otherwise, the
+   Client then creates a TokenRequest structured as follows:
 
    struct {
       uint16_t token_type = 0x0001;
@@ -242,7 +244,9 @@ Table of Contents
    evaluate_msg, proof = server_context.Evaluate(skI,
        TokenRequest.blinded_message, info)
 
-   The Issuer then creates a TokenResponse structured as follows:
+   SetupPOPRFServer is in [OPRF], Section 3.2 and Evaluate is defined in
+   [OPRF], Section 3.3.3.  The Issuer then creates a TokenResponse
+   structured as follows:
 
    struct {
       uint8_t evaluate_response[Nk];
@@ -281,7 +285,8 @@ Table of Contents
    authenticator = client_context.Finalize(context, blind, pkI,
      evaluated_msg, blinded_msg, info, tweaked_key)
 
-   If this succeeds, the Client then constructs a Token as follows:
+   The Finalize function is defined in [OPRF], Section 3.3.3.  If this
+   succeeds, the Client then constructs a Token as follows:
 
    struct {
        uint16_t token_type = 0x0001
@@ -350,6 +355,7 @@ Table of Contents
    token_input = concat(0x0002, nonce, context, key_id)
    blinded_msg, blind_inv = rsabssa_blind(pkI, token_input)
 
+   The rsabssa_blind function is defined in [BLINDRSA], Section 5.1.1..
    The Client then creates a TokenRequest structured as follows:
 
    struct {
@@ -404,9 +410,10 @@ Table of Contents
 
    blind_sig = rsabssa_blind_sign(skI, TokenRequest.blinded_rmsg)
 
-   The Issuer generates an HTTP response with status code 200 whose body
-   consists of blind_sig, with the content type set as "message/token-
-   response".
+   The rsabssa_blind_sign function is defined in [BLINDRSA],
+   Section 5.1.2.. The Issuer generates an HTTP response with status
+   code 200 whose body consists of blind_sig, with the content type set
+   as "message/token-response".
 
    :status = 200
    content-type = message/token-response
@@ -421,8 +428,9 @@ Table of Contents
 
    authenticator = rsabssa_finalize(pkI, nonce, blind_sig, blind_inv)
 
-   If this succeeds, the Client then constructs a Token as described in
-   [HTTP-Authentication] as follows:
+   The rsabssa_finalize function is defined in [BLINDRSA],
+   Section 5.1.3.. If this succeeds, the Client then constructs a Token
+   as described in [HTTP-Authentication] as follows:
 
    struct {
        uint16_t token_type = 0x0002
@@ -570,9 +578,9 @@ Table of Contents
 
    [BLINDRSA] Denis, F., Jacobs, F., and C. A. Wood, "RSA Blind
               Signatures", Work in Progress, Internet-Draft, draft-irtf-
-              cfrg-rsa-blind-signatures-02, 2 August 2021,
+              cfrg-rsa-blind-signatures-03, 2 February 2022,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              rsa-blind-signatures-02>.
+              rsa-blind-signatures-03>.
 
    [HTTP-Authentication]
               "The Privacy Pass HTTP Authentication Scheme", n.d.,
