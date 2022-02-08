@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-02-06T01:02:36.710841+00:00",
+  "timestamp": "2022-02-08T00:57:09.711914+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -1307,6 +1307,24 @@
       "createdAt": "2022-02-05T06:56:48Z",
       "updatedAt": "2022-02-05T16:54:17Z",
       "closedAt": "2022-02-05T16:54:17Z",
+      "comments": []
+    },
+    {
+      "number": 96,
+      "id": "I_kwDODeTEy85DI5H9",
+      "title": "HTTP examples",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/96",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "See [Mark's original issue](https://github.com/tfpauly/privacy-proxy/issues/160#issue-1125596987).",
+      "createdAt": "2022-02-07T19:26:59Z",
+      "updatedAt": "2022-02-07T19:31:06Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -6711,26 +6729,42 @@
       "id": "PR_kwDODeTEy84yGyI8",
       "title": "Point to OPRF and blind RSA function definitions",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/94",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "It's not obvious where to find these things!\r\n\r\ncc @armfazh ",
       "createdAt": "2022-02-04T21:49:49Z",
-      "updatedAt": "2022-02-04T21:49:49Z",
+      "updatedAt": "2022-02-07T21:14:17Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "master",
       "baseRefOid": "a3f9004e932831a6284723fa74209e260c6500be",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/function-pointers",
       "headRefOid": "e364bf0f8e6fefe81eae0c28d1506e320b725e99",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-02-07T21:14:17Z",
+      "mergedAt": "2022-02-07T21:14:17Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "cd845fbac27f1bbddccaa9079856f6d7b530bfac"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy840KnIA",
+          "commit": {
+            "abbreviatedOid": "e364bf0"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-02-07T20:13:48Z",
+          "updatedAt": "2022-02-07T20:13:48Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
