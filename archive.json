@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-02-08T00:57:09.711914+00:00",
+  "timestamp": "2022-02-10T00:57:02.470994+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -70,7 +70,7 @@
       ],
       "body": "Need to provide recommendations for section {{recs-srvr}} in the pp-architecture draft. It seems to me that it is easy for individual clients to identify and react to servers that seem to be acting maliciously. For example, the client can monitor and reject key material from servers where the configuration was last modified very recently and how often the rotations seem to be occurring. However, I'm not exactly sure what the reporting mechanism should be to alert other clients to this behavior.",
       "createdAt": "2020-03-03T14:06:06Z",
-      "updatedAt": "2021-12-30T14:57:07Z",
+      "updatedAt": "2022-02-09T22:59:48Z",
       "closedAt": null,
       "comments": [
         {
@@ -81,11 +81,11 @@
           "updatedAt": "2020-03-23T08:03:39Z"
         },
         {
-          "author": "phyo734",
-          "authorAssociation": "NONE",
-          "body": "0x170DBdd337bA421fED5498279a61db29B66aB37d",
-          "createdAt": "2021-12-30T14:57:07Z",
-          "updatedAt": "2021-12-30T14:57:07Z"
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "(Deleted spam comment)",
+          "createdAt": "2022-02-09T22:59:47Z",
+          "updatedAt": "2022-02-09T22:59:47Z"
         }
       ]
     },
@@ -1018,17 +1018,17 @@
       "id": "MDU6SXNzdWU4MTI4NzUyNjk=",
       "title": "Accommodate client and server metadata ",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/63",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-wood",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "protocol"
       ],
       "body": "The APIs currently do not allow clients or servers to supply metadata into the issuance flow. Absent a slot for metadata, how would one implement the PMB or the PrivateStats variants? One way would be to add client public metadata to the Generate API, and server public and private metadata to the Issue API, and communicate these in the requests and responses as needed. The instantiations/ciphersuites could then impose limits on these inputs as needed. For example, the PMB variant might limit the server private metadata to a single byte of value 0x00 or 0x01, and the public metadata would be empty. \r\n\r\n@dvorak42, would that be workable?\r\n",
       "createdAt": "2021-02-21T15:04:15Z",
-      "updatedAt": "2021-03-09T21:47:44Z",
-      "closedAt": null,
+      "updatedAt": "2022-02-09T22:59:17Z",
+      "closedAt": "2022-02-09T22:59:16Z",
       "comments": [
         {
           "author": "dvorak42",
@@ -1039,10 +1039,17 @@
         },
         {
           "author": "chris-wood",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Cool. I'll prep a PR!",
           "createdAt": "2021-03-09T21:47:44Z",
           "updatedAt": "2021-03-09T21:47:44Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think we can close this now that some issuance protocols admit public metadata.",
+          "createdAt": "2022-02-09T22:59:16Z",
+          "updatedAt": "2022-02-09T22:59:16Z"
         }
       ]
     },
@@ -1055,10 +1062,12 @@
       "author": "dvorak42",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "architecture"
+      ],
       "body": "The privacy calculations should be updated to take into account metadata more explicitly, and take into account the cost of the number of redemptions, rather than the global issuer count.\r\n\r\nIf used in a multiple disjoint architecture ecosystem, then the math should also be taken in terms of a specific 'context' rather than treating the whole PrivacyPass ecosystem as a single global system (allowing for more nuanced requirements/limitations on issuer counts).",
       "createdAt": "2021-03-09T15:59:47Z",
-      "updatedAt": "2021-03-09T15:59:47Z",
+      "updatedAt": "2022-02-09T22:58:48Z",
       "closedAt": null,
       "comments": []
     },
@@ -1283,13 +1292,15 @@
       "state": "OPEN",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "chris-wood"
+      ],
       "labels": [
         "protocol"
       ],
       "body": "These test vectors should cover the whole flow of the protocol, starting with the `TokenChallenge` input and producing a `Token` output.",
       "createdAt": "2022-02-04T21:46:44Z",
-      "updatedAt": "2022-02-04T21:46:54Z",
+      "updatedAt": "2022-02-09T22:58:26Z",
       "closedAt": null,
       "comments": []
     },
@@ -1320,10 +1331,12 @@
       "assignees": [
         "chris-wood"
       ],
-      "labels": [],
+      "labels": [
+        "protocol"
+      ],
       "body": "See [Mark's original issue](https://github.com/tfpauly/privacy-proxy/issues/160#issue-1125596987).",
       "createdAt": "2022-02-07T19:26:59Z",
-      "updatedAt": "2022-02-07T19:31:06Z",
+      "updatedAt": "2022-02-09T22:58:34Z",
       "closedAt": null,
       "comments": []
     }
